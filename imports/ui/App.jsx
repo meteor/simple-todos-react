@@ -35,6 +35,16 @@ class App extends Component {
         <header>
           <h1>Todo List</h1>
 
+          <label className="hide-completed">
+            <input
+              type="checkbox"
+              readOnly
+              checked={this.state.hideCompleted}
+              onClick={this.toggleHideCompleted.bind(this)}
+            />
+            Hide Completed Tasks
+          </label>
+
           <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
             <input
               type="text"
