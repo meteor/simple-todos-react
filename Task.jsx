@@ -1,7 +1,8 @@
 // Task component - represents a single todo item
 Task = React.createClass({
   propTypes: {
-    task: React.PropTypes.object.isRequired
+    task: React.PropTypes.object.isRequired,
+    showPrivateButton: React.PropTypes.bool.isRequired
   },
 
   toggleChecked() {
