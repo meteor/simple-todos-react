@@ -31,6 +31,12 @@ Task = React.createClass({
           checked={this.props.task.checked}
           onClick={this.toggleChecked} />
 
+        { this.props.showPrivateButton ? (
+          <button className="toggle-private" onClick={this.togglePrivate}>
+            { this.props.task.private ? "Private" : "Public" }
+          </button>
+        ) : ''}
+
         <span className="text">
           <strong>{this.props.task.username}</strong>: {this.props.task.text}
         </span>
