@@ -20,7 +20,8 @@ App = React.createClass({
     }
 
     return {
-      tasks: Tasks.find(query, {sort: {createdAt: -1}}).fetch()
+      tasks: Tasks.find(query, {sort: {createdAt: -1}}).fetch(),
+      incompleteCount: Tasks.find({checked: {$ne: true}}).count()
     };
   },
 
