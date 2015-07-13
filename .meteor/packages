@@ -8,3 +8,5 @@ meteor-platform
 autopublish
 insecure
 react
+accounts-ui
+accounts-password
