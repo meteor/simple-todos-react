@@ -39,6 +39,12 @@ App = React.createClass({
     React.findDOMNode(this.refs.textInput).value = "";
   },
 
+  toggleHideCompleted() {
+    this.setState({
+      hideCompleted: ! this.state.hideCompleted
+    });
+  },
+
   render() {
     return (
       <div className="container">
