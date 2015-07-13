@@ -73,12 +73,14 @@ App = React.createClass({
 
           <AccountsUIWrapper />
 
-          <form className="new-task" onSubmit={this.handleSubmit} >
-            <input
-              type="text"
-              ref="textInput"
-              placeholder="Type to add new tasks" />
-          </form>
+          { this.data.currentUser ?
+            <form className="new-task" onSubmit={this.handleSubmit} >
+              <input
+                type="text"
+                ref="textInput"
+                placeholder="Type to add new tasks" />
+            </form> : ''
+          }
         </header>
 
         <ul>
