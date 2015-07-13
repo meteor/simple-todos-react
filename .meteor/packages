@@ -20,3 +20,5 @@ autopublish@1.0.7             # Publish all data to the clients (for prototyping
 insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
 static-html
 react-meteor-data
+accounts-ui
+accounts-password
