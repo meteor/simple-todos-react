@@ -4,6 +4,12 @@ App = React.createClass({
   // This mixin makes the getMeteorData method work
   mixins: [ReactMeteorData],
 
+  getInitialState() {
+    return {
+      hideCompleted: false
+    }
+  },
+
   // Loads items from the Tasks collection and puts them on this.data.tasks
   getMeteorData() {
     return {
