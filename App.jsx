@@ -57,7 +57,7 @@ App = React.createClass({
     return (
       <div className="container">
         <header>
-          <h1>Todo List</h1>
+          <h1>Todo List ({this.data.incompleteCount})</h1>
 
           <label className="hide-completed">
             <input
