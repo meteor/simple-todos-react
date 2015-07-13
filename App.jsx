@@ -68,6 +68,8 @@ App = React.createClass({
             Hide Completed Tasks
           </label>
 
+          <AccountsUIWrapper />
+
           <form className="new-task" onSubmit={this.handleSubmit} >
             <input
               type="text"
