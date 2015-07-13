@@ -21,7 +21,9 @@ Task = React.createClass({
   render() {
     // Give tasks a different className when they are checked off,
     // so that we can style them nicely in CSS
-    const taskClassName = this.props.task.checked ? "checked" : "";
+    // Add "checked" and/or "private" to the className when needed
+    const taskClassName = (this.props.task.checked ? "checked" : "") + " " +
+      (this.props.task.private ? "private" : "");
 
     return (
       <li className={taskClassName}>
