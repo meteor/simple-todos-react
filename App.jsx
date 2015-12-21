@@ -6,7 +6,8 @@ App = React.createClass({
 
   getInitialState() {
     return {
-      hideCompleted: false
+      hideCompleted: false,
+      text: '',
     }
   },
 
@@ -42,13 +43,14 @@ App = React.createClass({
   handleSubmit(event) {
     event.preventDefault();
 
-    // Find the text field via the React ref
-    var text = React.findDOMNode(this.refs.textInput).value.trim();
-
-    Meteor.call("addTask", text);
+    Meteor.call("addTask", this.state.text);
 
     // Clear form
-    React.findDOMNode(this.refs.textInput).value = "";
+    this.setState({text: ""});
+  },
+
+  onTextChange(event) {
+    this.setState({text: event.target.value});
   },
 
   toggleHideCompleted() {
@@ -78,8 +80,9 @@ App = React.createClass({
             <form className="new-task" onSubmit={this.handleSubmit} >
               <input
                 type="text"
-                ref="textInput"
-                placeholder="Type to add new tasks" />
+                placeholder="Type to add new tasks"
+                value={this.state.text}
+                onChange={this.onTextChange} />
             </form> : ''
           }
         </header>
