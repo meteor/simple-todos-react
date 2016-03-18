@@ -20,3 +20,4 @@ shell-server@0.3.0            # Server-side component of the `meteor shell` comm
 react-meteor-data
 accounts-ui
 accounts-password
+meteortesting:mocha
