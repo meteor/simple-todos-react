@@ -43,12 +43,18 @@ App = React.createClass({
     event.preventDefault();
 
     // Find the text field via the React ref
-    var text = React.findDOMNode(this.refs.textInput).value.trim();
+    var text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
 
     Meteor.call("addTask", text);
 
     // Clear form
-    React.findDOMNode(this.refs.textInput).value = "";
+    ReactDOM.findDOMNode(this.refs.textInput).value = "";
+  },
+
+  toggleHideCompleted() {
+    this.setState({
+      hideCompleted: ! this.state.hideCompleted
+    });
   },
 
   toggleHideCompleted() {
