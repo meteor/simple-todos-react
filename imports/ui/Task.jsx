@@ -4,6 +4,12 @@ import classnames from 'classnames';
 
 // Task component - represents a single todo item
 export default class Task extends Component {
+  constructor(props) {
+    super(props);
+    this.toggleChecked = this.toggleChecked.bind(this);
+    this.deleteThisTask = this.deleteThisTask.bind(this);
+    this.togglePrivate = this.togglePrivate.bind(this);
+  }
   toggleChecked() {
     // Set the checked property to the opposite of its current value
     Meteor.call('tasks.setChecked', this.props.task._id, !this.props.task.checked);
@@ -27,7 +33,7 @@ export default class Task extends Component {
 
     return (
       <li className={taskClassName}>
-        <button className="delete" onClick={this.deleteThisTask.bind(this)}>
+        <button className="delete" onClick={this.deleteThisTask}>
           &times;
         </button>
 
@@ -35,11 +41,11 @@ export default class Task extends Component {
           type="checkbox"
           readOnly
           checked={this.props.task.checked}
-          onClick={this.toggleChecked.bind(this)}
+          onClick={this.toggleChecked}
         />
 
         { this.props.showPrivateButton ? (
-          <button className="toggle-private" onClick={this.togglePrivate.bind(this)}>
+          <button className="toggle-private" onClick={this.togglePrivate}>
             { this.props.task.private ? 'Private' : 'Public' }
           </button>
         ) : ''}
