@@ -22,12 +22,12 @@ class App extends Component {
     event.preventDefault();
 
     // Find the text field via the React ref
-    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+    const text = ReactDOM.findDOMNode(this.textInput).value.trim();
 
     Meteor.call('tasks.insert', text);
 
     // Clear form
-    ReactDOM.findDOMNode(this.refs.textInput).value = '';
+    ReactDOM.findDOMNode(this.textInput).value = '';
   }
 
   toggleHideCompleted() {
@@ -77,7 +77,7 @@ class App extends Component {
             <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
               <input
                 type="text"
-                ref="textInput"
+                ref={(ref) => this.textInput = ref}
                 placeholder="Type to add new tasks"
               />
             </form> : ''
