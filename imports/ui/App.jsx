@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
@@ -22,12 +21,12 @@ class App extends Component {
     event.preventDefault();
 
     // Find the text field via the React ref
-    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+    const text = this.textInput.value.trim();
 
     Meteor.call('tasks.insert', text);
 
     // Clear form
-    ReactDOM.findDOMNode(this.refs.textInput).value = '';
+    this.textInput.value = '';
   }
 
   toggleHideCompleted() {
@@ -77,7 +76,7 @@ class App extends Component {
             <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
               <input
                 type="text"
-                ref="textInput"
+                ref={input => this.textInput = input}
                 placeholder="Type to add new tasks"
               />
             </form> : ''
