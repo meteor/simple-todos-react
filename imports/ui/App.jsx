@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
@@ -15,19 +14,28 @@ class App extends Component {
 
     this.state = {
       hideCompleted: false,
+      text: '',
     };
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   }
 
   handleSubmit(event) {
     event.preventDefault();
 
-    // Find the text field via the React ref
-    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
 
-    Meteor.call('tasks.insert', text);
+
+    Meteor.call('tasks.insert', this.state.text);
 
     // Clear form
-    ReactDOM.findDOMNode(this.refs.textInput).value = '';
+    this.setState({
+      text: ''
+    });
+
   }
 
   toggleHideCompleted() {
@@ -66,21 +74,23 @@ class App extends Component {
               type="checkbox"
               readOnly
               checked={this.state.hideCompleted}
-              onClick={this.toggleHideCompleted.bind(this)}
+              onClick={e => this.toggleHideCompleted(e)}
             />
             Hide Completed Tasks
           </label>
 
           <AccountsUIWrapper />
 
-          { this.props.currentUser ?
-            <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+          { this.props.currentUser &&
+            <form className="new-task" onSubmit={e => this.handleSubmit(e)} >
               <input
                 type="text"
-                ref="textInput"
+                name="text"
+                value={this.state.text}
                 placeholder="Type to add new tasks"
+                onChange={e => this.handleChange(e)}
               />
-            </form> : ''
+            </form>
           }
         </header>
 
