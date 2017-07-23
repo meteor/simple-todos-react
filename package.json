@@ -5,10 +5,11 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "classnames": "^2.2.3",
+    "classnames": "^2.2.5",
     "meteor-node-stubs": "~0.2.0",
-    "react": "^15.1.0",
-    "react-addons-pure-render-mixin": "^15.1.0",
-    "react-dom": "^15.1.0"
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-addons-pure-render-mixin": "^15.6.0",
+    "react-dom": "^15.6.1"
   }
 }
