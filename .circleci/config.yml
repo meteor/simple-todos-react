@@ -1,0 +1,72 @@
+version: 2
+jobs:
+  build: 
+    macos:
+      xcode: "9.0"
+    working_directory: ~/app
+    steps:
+      - checkout
+      - run:
+          name: fetch submodules
+          command: |
+            export TOOL_NODE_FLAGS="--max-old-space-size=8192"
+            git submodule sync
+            git submodule update --init --recursive
+      - run:
+          name: install mup
+          command: |
+            npm config set user 0 && npm config set unsafe-perm true
+            yarn global add npm@5.6.0
+            npm install -g mup phantomjs-prebuilt
+            npm install -g meteor-launch
+            #yarn global add git+https://git@github.com/wvanooijen92/meteor-launch.git#master
+            #npm install -g git+https://git@github.com/wvanooijen92/meteor-launch.git
+            echo "export PATH=$PATH:/usr/local/Cellar/node/8.6.0/bin" >> ~/.bash_profile
+            source ~/.bash_profile
+      - run:
+          name: install Meteor
+          command: |
+            # only install meteor if bin isn't found
+            command -v meteor >/dev/null 2>&1 || curl https://install.meteor.com/ | /bin/sh
+      - run:
+          name: check versions
+          command: |
+            echo "Node version:"
+            node -v
+            echo "NPM version:"
+            npm -v
+            echo "Yarn version:"
+            yarn -v
+            echo "Meteor version:"
+            # this forces Meteor to download whatever release your project is using
+            meteor --version
+            which meteor
+            echo "Meteor node version:"
+            meteor node -v
+            echo "Meteor npm version:"
+            meteor npm -v
+      - run:
+          name: install npm packages
+          command: |
+            npm install --unsafe-perm
+      - run:
+          name: Build iOS
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "test" ]; then
+              export LC_ALL=en_US.UTF-8
+              export LANG=en_US.UTF-8
+
+              # install contained version of fastlane
+              #brew cask install fastlane
+              #export PATH="$HOME/.fastlane/bin:$PATH"
+
+              git clone git@bitbucket.org:possys/deploy_certs.git .deploy_certs
+              mv .deploy_certs/launch.json ./launch.json
+              pwd
+              ls -al
+              #gets root_url from mup.js
+              #{{grep "ROOT_URL" ./.deploy/test/mup.js | sed "s/^.*ROOT_URL\: '\([^']*\).*/\1/"}}
+              /usr/local/Cellar/node/8.6.0/bin/launch build https://pos-test.mrwinston.nl
+              #/usr/local/Cellar/node/8.6.0/bin/launch testflight
+              #/usr/local/Cellar/node/8.6.0/bin/launch playstore
+            fi
