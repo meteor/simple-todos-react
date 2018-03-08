@@ -54,7 +54,7 @@ jobs:
           name: install ruby and gems
           command: |
             brew update && brew install ruby && brew install rbenv
-            brew update && brew upgrade ruby-build && rbenv install 2.3.1
+            brew update && rbenv install 2.3.1
             rbenv global 2.3.1
       - run:
           name: Build iOS
