@@ -78,6 +78,6 @@ jobs:
               #gets root_url from mup.js
               #{{grep "ROOT_URL" ./.deploy/test/mup.js | sed "s/^.*ROOT_URL\: '\([^']*\).*/\1/"}}
               /usr/local/Cellar/node/8.6.0/bin/launch build https://pos-test.mrwinston.nl
-              #/usr/local/Cellar/node/8.6.0/bin/launch testflight
+              /usr/local/Cellar/node/8.6.0/bin/launch testflight
               #/usr/local/Cellar/node/8.6.0/bin/launch playstore
             fi
