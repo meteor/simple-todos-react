@@ -51,6 +51,16 @@ jobs:
             npm install --unsafe-perm
             meteor npm -v
       - run:
+          name: install ruby and gems
+          command: |
+            brew update && brew install ruby
+            echo "source ~/.profile" >> ~/.bash_profile
+            source ~/.bash_profile
+            curl -sSL https://get.rvm.io | bash -s stable --ruby
+            source ~/.rvm/scripts/rvm
+            rvm osx-ssl-certs update all
+            rvm reinstall ruby-2.3.1 --with-openssl-dir=/usr/local
+      - run:
           name: Build iOS
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
