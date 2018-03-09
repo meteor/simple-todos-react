@@ -51,21 +51,15 @@ jobs:
             npm install --unsafe-perm
             meteor npm -v
       - run:
-          name: install ruby and gems
-          command: |
-            brew update && brew install ruby && brew install rbenv
-            brew update && rbenv install 2.3.1
-            rbenv global 2.3.1
-      - run:
           name: Build iOS
           command: |
-            if [ "${CIRCLE_BRANCH}" == "test" ]; then
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
               export LC_ALL=en_US.UTF-8
               export LANG=en_US.UTF-8
 
               # install contained version of fastlane
-              #brew cask install fastlane
-              #export PATH="$HOME/.fastlane/bin:$PATH"
+              brew cask install fastlane
+              export PATH="$HOME/.fastlane/bin:$PATH"
 
               git clone git@bitbucket.org:possys/deploy_certs.git .deploy_certs
               mv .deploy_certs/launch.json ./launch.json
