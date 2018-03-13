@@ -51,7 +51,8 @@ jobs:
               brew update
               #sudo gem install fastlane
               brew cask install fastlane
-              
+              echo 'export PATH="$HOME/.fastlane/bin:$PATH"' >> ~/.bash_profile
+              source ~/.bash_profile
               git clone git@bitbucket.org:possys/deploy_certs.git .deploy_certs
               mv .deploy_certs/launch.json ./launch.json
               export LC_ALL=en_US.UTF-8
