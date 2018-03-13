@@ -10,8 +10,6 @@ jobs:
           name: fetch submodules
           command: |
             export TOOL_NODE_FLAGS="--max-old-space-size=8192"
-            git submodule sync
-            git submodule update --init --recursive
       - run:
           name: install mup & fastlane
           command: |
@@ -43,20 +41,21 @@ jobs:
       - run:
           name: install npm packages
           command: |
-            npm install --unsafe-perm
+            meteor npm install
       - run:
           name: Build iOS
           command: |
             # if [ "${CIRCLE_BRANCH}" == "master" ]; then
               brew update
-              brew cask install fastlane
+              brew install ruby
+              brew cask install fastlane #brew cask install fastlane
 
               echo 'export PATH="$HOME/.fastlane/bin:$PATH"' >> ~/.bash_profile
               source ~/.bash_profile
 
               git clone git@bitbucket.org:possys/deploy_certs.git .deploy_certs
               mv .deploy_certs/launch.json ./launch.json
-              
+
               export LC_ALL=en_US.UTF-8
               export LANG=en_US.UTF-8
 
