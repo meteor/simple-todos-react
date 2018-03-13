@@ -5,7 +5,7 @@ jobs:
       xcode: "9.2.0"
     working_directory: ~/app
     environment:
-      TOOL_NODE_FLAGS="--max-old-space-size=8192"
+      TOOL_NODE_FLAGS=--max-old-space-size=8192
     steps:
       - checkout
       - run:
