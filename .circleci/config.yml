@@ -55,7 +55,7 @@ jobs:
               export LC_ALL=en_US.UTF-8
               export LANG=en_US.UTF-8
 
-              cp .deploy_certs/Fastfile /usr/local/lib/node_modules/meteor-launch/fastlane/Fastfile
+              cp .deploy_certs/fastlane/Fastfile /usr/local/lib/node_modules/meteor-launch/fastlane/Fastfile
               
               launch build https://pos-test.mrwinston.nl
               launch testflight
