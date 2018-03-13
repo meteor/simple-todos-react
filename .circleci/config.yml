@@ -2,16 +2,14 @@ version: 2
 jobs:
   build: 
     macos:
-      xcode: "9.0"
+      xcode: "9.2.0"
     working_directory: ~/app
+    environment:
+      TOOL_NODE_FLAGS="--max-old-space-size=8192"
     steps:
       - checkout
       - run:
-          name: fetch submodules
-          command: |
-            export TOOL_NODE_FLAGS="--max-old-space-size=8192"
-      - run:
-          name: install mup & fastlane
+          name: install meteor-launch
           command: |
             npm install -g meteor-launch
             # yarn global add git+https://git@github.com/wvanooijen92/meteor-launch.git#master
@@ -46,6 +44,26 @@ jobs:
           name: Build iOS
           command: |
             # if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              # brew update
 
+              # brew install ruby
+              # echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bash_profile
+              # source ~/.bash_profile
+
+              brew cask install fastlane
+
+              echo 'export PATH="$HOME/.fastlane/bin:$PATH"' >> ~/.bash_profile
+              source ~/.bash_profile
+
+              git clone git@bitbucket.org:possys/deploy_certs.git .deploy_certs
+              mv .deploy_certs/launch.json ./launch.json
+
+              export LC_ALL=en_US.UTF-8
+              export LANG=en_US.UTF-8
+
+              # cp .deploy_certs/fastlane/Fastfile /usr/local/lib/node_modules/meteor-launch/fastlane/Fastfile
+              
+              launch build https://pos-test.mrwinston.nl
+              launch testflight
               # launch playstore
             # fi
