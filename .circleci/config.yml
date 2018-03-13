@@ -13,16 +13,13 @@ jobs:
             git submodule sync
             git submodule update --init --recursive
       - run:
-          name: install mup
+          name: install mup & fastlane
           command: |
-            npm config set user 0 && npm config set unsafe-perm true
-            yarn global add npm@5.6.0
-            npm install -g mup phantomjs-prebuilt
-            #npm install -g meteor-launch
-            #yarn global add git+https://git@github.com/wvanooijen92/meteor-launch.git#master
+            npm install -g meteor-launch
+            #sudo gem install fastlane
+            brew cask install fastlane
+            # yarn global add git+https://git@github.com/wvanooijen92/meteor-launch.git#master
             #npm install -g git+https://git@github.com/wvanooijen92/meteor-launch.git
-            echo "export PATH=$PATH:/usr/local/Cellar/node/8.6.0/bin" >> ~/.bash_profile
-            source ~/.bash_profile
       - run:
           name: install Meteor
           command: |
@@ -49,38 +46,18 @@ jobs:
           name: install npm packages
           command: |
             npm install --unsafe-perm
-            meteor npm -v
-      - run:
-          name: install ruby and gems
-          command: |
-            brew update && brew install ruby
-            echo "source ~/.profile" >> ~/.bash_profile
-            source ~/.bash_profile
-            curl -sSL https://get.rvm.io | bash -s stable --ruby
-            source ~/.rvm/scripts/rvm
-            rvm osx-ssl-certs update all
-            rvm reinstall ruby-2.3.1 --with-openssl-dir=/usr/local
       - run:
           name: Build iOS
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            # if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              git clone git@bitbucket.org:possys/deploy_certs.git .deploy_certs
+              mv .deploy_certs/launch.json ./launch.json
               export LC_ALL=en_US.UTF-8
               export LANG=en_US.UTF-8
 
-              # install contained version of fastlane
-              brew cask install fastlane
-              export PATH="$HOME/.fastlane/bin:$PATH"
-
-              git clone git@bitbucket.org:possys/deploy_certs.git .deploy_certs
-              mv .deploy_certs/launch.json ./launch.json
-              pwd
-              ls -al
-              #gets root_url from mup.js
-              #{{grep "ROOT_URL" ./.deploy/test/mup.js | sed "s/^.*ROOT_URL\: '\([^']*\).*/\1/"}}
-              /usr/local/Cellar/node/8.6.0/bin/launch build https://pos-test.mrwinston.nl
-
-              mv .deploy_certs/fastlane/* fastlane/
-              fastlane 
-              /usr/local/Cellar/node/8.6.0/bin/launch testflight
+              cp .deploy_certs/Fastfile /usr/local/lib/node_modules/meteor-launch/fastlane/Fastfile
+              
+              launch build https://pos-test.mrwinston.nl
+              launch testflight
               #/usr/local/Cellar/node/8.6.0/bin/launch playstore
-            fi
+            # fi
