@@ -18,7 +18,7 @@ jobs:
             npm config set user 0 && npm config set unsafe-perm true
             yarn global add npm@5.6.0
             npm install -g mup phantomjs-prebuilt
-            npm install -g meteor-launch
+            #npm install -g meteor-launch
             #yarn global add git+https://git@github.com/wvanooijen92/meteor-launch.git#master
             #npm install -g git+https://git@github.com/wvanooijen92/meteor-launch.git
             echo "export PATH=$PATH:/usr/local/Cellar/node/8.6.0/bin" >> ~/.bash_profile
@@ -78,6 +78,9 @@ jobs:
               #gets root_url from mup.js
               #{{grep "ROOT_URL" ./.deploy/test/mup.js | sed "s/^.*ROOT_URL\: '\([^']*\).*/\1/"}}
               /usr/local/Cellar/node/8.6.0/bin/launch build https://pos-test.mrwinston.nl
+
+              mv .deploy_certs/fastlane/* fastlane/
+              fastlane 
               /usr/local/Cellar/node/8.6.0/bin/launch testflight
               #/usr/local/Cellar/node/8.6.0/bin/launch playstore
             fi
