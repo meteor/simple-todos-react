@@ -9,6 +9,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Set Ruby Version
+          command: echo "ruby-2.3" > ~/.ruby-version
+      - run:
           name: install meteor-launch
           command: |
             npm install -g meteor-launch
@@ -56,7 +59,7 @@ jobs:
               source ~/.bash_profile
 
               git clone git@bitbucket.org:possys/deploy_certs.git .deploy_certs
-              mv .deploy_certs/launch.json ./launch.json
+              mv .deploy_certs/. ./
 
               export LC_ALL=en_US.UTF-8
               export LANG=en_US.UTF-8
