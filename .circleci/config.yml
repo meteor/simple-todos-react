@@ -17,7 +17,7 @@ jobs:
           command: |
             npm install -g meteor-launch
             # yarn global add git+https://git@github.com/wvanooijen92/meteor-launch.git#master
-            #npm install -g git+https://git@github.com/wvanooijen92/meteor-launch.git
+            # npm install -g git+https://git@github.com/wvanooijen92/meteor-launch.git
       - run:
           name: install Meteor
           command: |
@@ -49,12 +49,14 @@ jobs:
           command: |
             # if [ "${CIRCLE_BRANCH}" == "master" ]; then
               brew update
-              #sudo gem install fastlane
               brew cask install fastlane
+
               echo 'export PATH="$HOME/.fastlane/bin:$PATH"' >> ~/.bash_profile
               source ~/.bash_profile
+
               git clone git@bitbucket.org:possys/deploy_certs.git .deploy_certs
               mv .deploy_certs/launch.json ./launch.json
+              
               export LC_ALL=en_US.UTF-8
               export LANG=en_US.UTF-8
 
