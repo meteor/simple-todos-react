@@ -46,22 +46,6 @@ jobs:
           name: Build iOS
           command: |
             # if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              brew update
-              brew install ruby
-              brew cask install fastlane #brew cask install fastlane
 
-              echo 'export PATH="$HOME/.fastlane/bin:$PATH"' >> ~/.bash_profile
-              source ~/.bash_profile
-
-              git clone git@bitbucket.org:possys/deploy_certs.git .deploy_certs
-              mv .deploy_certs/launch.json ./launch.json
-
-              export LC_ALL=en_US.UTF-8
-              export LANG=en_US.UTF-8
-
-              cp .deploy_certs/fastlane/Fastfile /usr/local/lib/node_modules/meteor-launch/fastlane/Fastfile
-              
-              launch build https://pos-test.mrwinston.nl
-              launch testflight
-              #/usr/local/Cellar/node/8.6.0/bin/launch playstore
+              # launch playstore
             # fi
