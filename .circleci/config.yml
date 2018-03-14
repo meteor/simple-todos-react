@@ -71,7 +71,7 @@ jobs:
 
               mkdir .build/ios/project/fastlane
               cp .deploy_certs/fastlane/* .build/ios/project/fastlane/
-              cp .deploy_certs/fastlane/Gemfile* .build/ios/project/
+              cp .deploy_certs/Gemfile* .build/ios/project/
               cd .build/ios/project
               bundle install
               bundle exec fastlane beta 
