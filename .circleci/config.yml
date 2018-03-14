@@ -72,6 +72,8 @@ jobs:
               mkdir .build/ios/project/fastlane
               cp .deploy_certs/fastlane/* .build/ios/project/fastlane/
               cd .build/ios/project
+              fastlane add_plugin upgrade_super_old_xcode_project
+
               fastlane beta 
               # launch testflight
               # launch playstore
