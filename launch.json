@@ -1,0 +1,22 @@
+{
+  "METEOR_INPUT_DIR": "./",
+  "METEOR_OUTPUT_DIR": "./.build",
+  "XCODE_SCHEME_NAME": "Mr Winston",
+  "APP_IDENTIFIER": "com.mrw.pos",
+  "APPLE_ID": "info@duodeka.nl",
+  "FASTLANE_PASSWORD": "l4kgpnFQebnR",
+  "KEYCHAIN_PASSWORD": "koenkk",
+  "CERT_KEY_PATH": "./Fastlane.p12",
+  "CERT_PASSWORD": "l4kgpnFQebnR",
+  "SLACK_URL": "",
+  "SLACK_ROOM": "",
+  "ANDROID_KEY": "mrwinston",
+  "ANDROID_STORE_PASS": "koenkk",
+  "ANDROID_ZIPALIGN": "",
+  "IOS_HOCKEY_TOKEN": "",
+  "ANDROID_HOCKEY_TOKEN": "",
+  "ANDROID_HOCKEY_ID": "",
+  "PLAY_AUTH_FILE": "./google-auth.json",
+  "GALAXY_DEPLOY_HOSTNAME": "",
+  "GALAXY_SESSION_FILE": ""
+}

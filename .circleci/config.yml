@@ -56,17 +56,23 @@ jobs:
               brew cask install fastlane
 
               echo 'export PATH="$HOME/.fastlane/bin:$PATH"' >> ~/.bash_profile
-              source ~/.bash_profile
 
+              source ~/.bash_profile
+            
               git clone git@bitbucket.org:possys/deploy_certs.git .deploy_certs
-              mv .deploy_certs/. ./
 
               export LC_ALL=en_US.UTF-8
               export LANG=en_US.UTF-8
 
-              # cp .deploy_certs/fastlane/Fastfile /usr/local/lib/node_modules/meteor-launch/fastlane/Fastfile
-              
+              export MATCH_PASSWORD=pCfD.Df8c.0298.2Ad3
+              export FAST_LANEPASSWORD=l4kgpnFQebnR
+
               launch build https://pos-test.mrwinston.nl
-              launch testflight
+
+              mkdir .build/ios/project/fastlane
+              cp .deploy_certs/fastlane/* .build/ios/project/fastlane/
+              cd .build/ios/project
+              fastlane beta 
+              # launch testflight
               # launch playstore
             # fi
