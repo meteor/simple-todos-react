@@ -73,7 +73,7 @@ jobs:
               cp .deploy_certs/fastlane/* .build/ios/project/fastlane/
               cd .build/ios/project
               fastlane add_plugin upgrade_super_old_xcode_project
-
+              fastlane install_plugins
               fastlane beta 
               # launch testflight
               # launch playstore
