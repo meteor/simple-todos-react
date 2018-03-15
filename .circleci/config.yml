@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: Set Ruby Version
-          command: echo "ruby-2.3" > ~/.ruby-version
+          command: echo "ruby-2.5" > ~/.ruby-version
       - run:
           name: install meteor-launch
           command: |
@@ -47,7 +47,7 @@ jobs:
           name: Build iOS
           command: |
             # if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              # brew update
+              brew update
 
               # brew install ruby
               # echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bash_profile
@@ -64,9 +64,6 @@ jobs:
               export LC_ALL=en_US.UTF-8
               export LANG=en_US.UTF-8
 
-              export MATCH_PASSWORD=pCfD.Df8c.0298.2Ad3
-              export FAST_LANEPASSWORD=l4kgpnFQebnR
-
               launch build https://pos-test.mrwinston.nl
 
               mkdir .build/ios/project/fastlane
@@ -74,7 +71,7 @@ jobs:
               cp .deploy_certs/Gemfile* .build/ios/project/
               cd .build/ios/project
               bundle install
-              bundle exec fastlane beta 
+              bundle exec fastlane beta
               # launch testflight
               # launch playstore
             # fi
