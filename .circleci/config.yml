@@ -43,7 +43,7 @@ jobs:
 
               source ~/.bash_profile
 
-              launch build https://pos-test.mrwinston.nl
+              meteor build --directory .build --architecture os.linux.x86_64 --server https://pos.mrwinston.nl
 
               mkdir .build/ios/project/fastlane
               cp ./fastlane/* .build/ios/project/fastlane/
