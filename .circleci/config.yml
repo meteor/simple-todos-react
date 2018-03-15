@@ -46,7 +46,7 @@ jobs:
 
               mkdir .build/ios/project/fastlane
               cp ./fastlane/* .build/ios/project/fastlane/
-              cp ./Gemfile/* .build/ios/project/
+              cp ./Gem/* .build/ios/project/
 
               cd .build/ios/project
 
