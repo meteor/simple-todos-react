@@ -10,9 +10,9 @@ jobs:
       LANG: en_US.UTF-8
     steps:
       - checkout
-    #   - run:
-    #       name: Set Ruby Version
-    #       command: echo "ruby-2.4.3" > ~/.ruby-version
+      - run:
+          name: Set Ruby Version
+          command: echo "ruby-2.3" > ~/.ruby-version
       - run:
           name: install Meteor
           # only install meteor if bin isn't found
