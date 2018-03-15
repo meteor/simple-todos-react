@@ -37,7 +37,7 @@ jobs:
             # if [ "${CIRCLE_BRANCH}" == "master" ]; then
               brew update
 
-              gem install bundler
+              sudo gem install bundler
 
               echo 'export PATH="$HOME/.fastlane/bin:$PATH"' >> ~/.bash_profile
 
