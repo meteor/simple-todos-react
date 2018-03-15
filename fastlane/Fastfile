@@ -7,7 +7,7 @@
 #
 
 # Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+update_fastlane
 
 default_platform(:ios)
 xcversion(version: "8.3")
@@ -17,7 +17,7 @@ platform :ios do
   before_all do
   
     if Helper.is_ci? # As in my local machine I don't need to import the certificates, only run if it's in the CI
-      # setup_circle_ci
+      setup_circle_ci
     end
 
     match(
