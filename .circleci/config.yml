@@ -2,7 +2,7 @@ version: 2
 jobs:
   build: 
     macos:
-      xcode: "9.2.0"
+      xcode: "8.3.3"
     working_directory: ~/app
     environment:
       TOOL_NODE_FLAGS: --max-old-space-size=8192
@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run:
           name: Set Ruby Version
-          command: echo "ruby-2.5" > ~/.ruby-version
+          command: echo "ruby-2.4.3" > ~/.ruby-version
       - run:
           name: install Meteor
           command: |
