@@ -48,8 +48,11 @@ jobs:
 
               mkdir .build/ios/project/fastlane
               cp ./fastlane/* .build/ios/project/fastlane/
-              cp ./Gemfile* .build/ios/project/
+            #   cp ./Gemfile* .build/ios/project/
+
               cd .build/ios/project
-              bundle install
-              bundle exec fastlane beta
+
+              fastlane beta
+            #   bundle install
+            #   bundle exec fastlane beta
             # fi

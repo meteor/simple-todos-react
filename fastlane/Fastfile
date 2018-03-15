@@ -10,7 +10,7 @@
 # update_fastlane
 
 default_platform(:ios)
-xcversion(version: "9.2")
+xcversion(version: "8.3")
 
 platform :ios do
 
