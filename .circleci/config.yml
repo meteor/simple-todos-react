@@ -15,18 +15,11 @@ jobs:
           command: echo "ruby-2.4.3" > ~/.ruby-version
       - run:
           name: install Meteor
-          command: |
-            # only install meteor if bin isn't found
-            command -v meteor >/dev/null 2>&1 || curl https://install.meteor.com/ | /bin/sh
+          # only install meteor if bin isn't found
+          command: command -v meteor >/dev/null 2>&1 || curl https://install.meteor.com/ | /bin/sh 
       - run:
           name: check versions
           command: |
-            echo "Node version:"
-            node -v
-            echo "NPM version:"
-            npm -v
-            echo "Yarn version:"
-            yarn -v
             echo "Meteor version:"
             # this forces Meteor to download whatever release your project is using
             meteor --version
