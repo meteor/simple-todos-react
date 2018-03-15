@@ -35,8 +35,6 @@ jobs:
           name: Build iOS
           command: |
             # if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              brew update
-
               sudo gem install fastlane -NV
               sudo gem install bundler
 
