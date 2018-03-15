@@ -2,7 +2,7 @@ version: 2
 jobs:
   build: 
     macos:
-      xcode: "9.2"
+      xcode: "9.2.0"
     working_directory: ~/app
     environment:
       TOOL_NODE_FLAGS: --max-old-space-size=8192
@@ -37,8 +37,8 @@ jobs:
             # if [ "${CIRCLE_BRANCH}" == "master" ]; then
               brew update
 
-              gem install fastlane -NV
-              gem install bundler
+              sudo gem install fastlane -NV
+              sudo gem install bundler
 
               echo 'export PATH="$HOME/.fastlane/bin:$PATH"' >> ~/.bash_profile
 
