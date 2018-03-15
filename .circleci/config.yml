@@ -2,7 +2,7 @@ version: 2
 jobs:
   build: 
     macos:
-      xcode: "8.3.3"
+      xcode: "9.2"
     working_directory: ~/app
     environment:
       TOOL_NODE_FLAGS: --max-old-space-size=8192
@@ -37,7 +37,6 @@ jobs:
             # if [ "${CIRCLE_BRANCH}" == "master" ]; then
               brew update
 
-              
               gem install fastlane -NV
               gem install bundler
 

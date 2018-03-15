@@ -10,7 +10,7 @@
 # update_fastlane
 
 default_platform(:ios)
-xcversion(version: "8.3")
+xcversion(version: "9.2")
 
 platform :ios do
 
@@ -76,6 +76,7 @@ platform :ios do
       export_method: "app-store",
       xcargs: "PROVISIONING_PROFILE_SPECIFIER='match AppStore com.mrw.pos'"
     )
+
     upload_to_testflight
   end
 end
