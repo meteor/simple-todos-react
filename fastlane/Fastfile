@@ -59,13 +59,6 @@ platform :ios do
       path: xcodeprojpath,
       teamid: team_id
     )
-
-    # update_project_provisioning(
-    #   xcodeproj: xcodeprojpath,
-    #   #profile: "match AppStore com.mrw.pos", # optional if you use sigh
-    #   #target_filter: ".*WatchKit Extension.*", # matches name or type of a target
-    #   build_configuration: "Release"
-    # )
     
     build_app(
       workspace: "Mr Winston.xcworkspace", 
