@@ -37,6 +37,7 @@ jobs:
             # if [ "${CIRCLE_BRANCH}" == "master" ]; then
               brew update
 
+              
               gem install fastlane -NV
               gem install bundler
 
