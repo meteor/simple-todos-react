@@ -1,0 +1,12 @@
+git_url("git@bitbucket.org:possys/certs.git")
+
+type("development") # The default type, can be: appstore, adhoc, enterprise or development
+type("appstore")
+
+app_identifier(["com.mrw.pos"])
+username("info@duodeka.nl") # Your Apple Developer Portal username
+team_id("DXR2SHC2C7")
+
+
+# For all available options run `fastlane match --help`
+# Remove the # in the beginning of the line to enable the other options

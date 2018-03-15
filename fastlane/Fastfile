@@ -1,0 +1,75 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+xcversion(version: "9.2")
+
+platform :ios do
+
+  before_all do
+  
+    if Helper.is_ci? # As in my local machine I don't need to import the certificates, only run if it's in the CI
+      setup_circle_ci
+    end
+
+    match(
+      app_identifier: ["com.mrw.pos"], 
+      readonly: true, 
+      git_url: "git@bitbucket.org:possys/certs.git",
+      type:"appstore"
+    )
+  end
+
+  desc "Build development version"
+  lane :dev do
+
+    build_app(
+      workspace: "Mr Winston.xcworkspace", 
+      scheme: "Mr Winston",
+      clean: true,
+      # project: "#{ENV['METEOR_OUTPUT_ABSOLUTE']}/ios/project/#{ENV['XCODE_SCHEME_NAME']}.xcodeproj",
+      include_bitcode: false,
+      export_method: "development"
+    )
+  end
+
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    team_id = "DXR2SHC2C7"
+    xcodeprojpath = "Mr Winston.xcodeproj"
+
+    upgrade_super_old_xcode_project(
+      path: xcodeprojpath,
+      team_id: team_id
+    )
+
+    disable_automatic_code_signing(
+      path: xcodeprojpath
+    )
+
+    update_project_team(
+      path: xcodeprojpath,
+      teamid: team_id
+    )
+    
+    build_app(
+      workspace: "Mr Winston.xcworkspace", 
+      scheme: "Mr Winston",
+      clean: true,
+      # project: "#{ENV['METEOR_OUTPUT_ABSOLUTE']}/ios/project/#{ENV['XCODE_SCHEME_NAME']}.xcodeproj",
+      include_bitcode: false,
+      export_method: "app-store",
+      xcargs: "PROVISIONING_PROFILE_SPECIFIER='match AppStore com.mrw.pos'"
+    )
+
+    upload_to_testflight
+  end
+end

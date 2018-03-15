@@ -1,0 +1,55 @@
+version: 2
+jobs:
+  build: 
+    macos:
+      xcode: "9.2.0"
+    working_directory: ~/app
+    environment:
+      TOOL_NODE_FLAGS: --max-old-space-size=8192
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
+    steps:
+      - checkout
+      - run:
+          name: Set Ruby Version
+          command: echo "ruby-2.3" > ~/.ruby-version
+      - run:
+          name: install Meteor
+          # only install meteor if bin isn't found
+          command: command -v meteor >/dev/null 2>&1 || curl https://install.meteor.com/ | /bin/sh 
+      - run:
+          name: check versions
+          command: |
+            echo "Meteor version:"
+            # this forces Meteor to download whatever release your project is using
+            meteor --version
+            which meteor
+            echo "Meteor node version:"
+            meteor node -v
+            echo "Meteor npm version:"
+            meteor npm -v
+      - run:
+          name: install npm packages
+          command: meteor npm install
+      - run:
+          name: Build iOS
+          command: |
+            # if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              sudo gem install fastlane -NV
+              sudo gem install bundler
+
+              echo 'export PATH="$HOME/.fastlane/bin:$PATH"' >> ~/.bash_profile
+
+              source ~/.bash_profile
+
+              meteor build --directory .build --architecture os.linux.x86_64 --server https://pos.mrwinston.nl
+
+              mkdir .build/ios/project/fastlane
+              cp ./fastlane/* .build/ios/project/fastlane/
+              cp ./Gem/* .build/ios/project/
+
+              cd .build/ios/project
+
+              bundle install
+              bundle exec fastlane beta
+            # fi
