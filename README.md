@@ -10,7 +10,7 @@ Read more about building apps with Meteor in the [Meteor Guide](http://guide.met
 
 ![screenshot](screenshot.png)
 
-#How to run
+# How to run
 ## Using npm
 ```bash
 meteor npm install
