@@ -9,3 +9,17 @@ Learn how to build this app by following the [Meteor Tutorial](https://www.meteo
 Read more about building apps with Meteor in the [Meteor Guide](http://guide.meteor.com).
 
 ![screenshot](screenshot.png)
+
+#How to run
+## Using npm
+```bash
+meteor npm install
+meteor npm start
+```
+
+## Using yarn
+```bash
+meteor npm install -g yarn
+meteor yarn install
+meteor yarn start
+```
