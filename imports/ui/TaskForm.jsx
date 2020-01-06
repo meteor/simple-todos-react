@@ -1,14 +1,27 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
+import Tasks from '/imports/api/tasks';
 
 export const TaskForm = () => {
-  const inputRef = useRef(null);
+  const [text, setText] = useState("");
+
+  const handleSubmit = () => {
+    if (!text) return;
+
+    Tasks.insert({
+      text: text.trim(),
+      createdAt: new Date()
+    });
+
+    setText("");
+  };
 
   return (
-    <form className="task-form">
+    <form className="task-form" onSubmit={handleSubmit}>
       <input
         type="text"
-        ref={inputRef}
         placeholder="Type to add new tasks"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
       />
 
       <button type="submit">Add Task</button>
