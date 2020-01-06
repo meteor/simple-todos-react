@@ -5,7 +5,7 @@ import Tasks from '/imports/api/tasks';
 import { TaskForm } from './TaskForm';
 
 const App = () => {
-  const tasks = useTracker(() => Tasks.find({}).fetch());
+  const tasks = useTracker(() => Tasks.find({}, { sort: { createdAt: -1 } }).fetch());
 
   return (
     <div>
