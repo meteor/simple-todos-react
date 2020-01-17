@@ -3,6 +3,43 @@ body {
   font-family: sans-serif;
 }
 
-.task-form {
+.simple-todos-react {
+  margin: 0 auto;
+  max-width: 512px;
+}
+
+.simple-todos-react .tasks {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.simple-todos-react .tasks .task {
+  display: flex;
+  align-items: center;
+  height: 32px;
+}
+
+.simple-todos-react .tasks .task span {
+  flex-grow: 1;
+}
+
+.simple-todos-react .tasks .task button {
+  cursor: pointer;
+  background: transparent;
+  outline: none;
+  border: none;
+}
+
+.simple-todos-react .tasks .task.checked span {
+  text-decoration: line-through;
+}
+
+.simple-todos-react .task-form {
   margin-top: 1rem;
+  display: flex;
+}
+
+.simple-todos-react .task-form input {
+  flex-grow: 1;
 }
