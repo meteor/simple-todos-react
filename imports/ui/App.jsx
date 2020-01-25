@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Task } from './Task';
 import Tasks from '/imports/api/tasks';
@@ -15,6 +15,8 @@ const toggleChecked = ({ _id, isChecked }) => {
 const deleteTask = ({ _id }) => Tasks.remove(_id);
 
 const App = () => {
+  const [hideCompleted, setHideCompleted] = useState(false);
+
   const tasks = useTracker(() => Tasks.find({}, { sort: { createdAt: -1 } }).fetch());
 
   return (
