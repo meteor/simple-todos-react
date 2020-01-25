@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
+import _ from 'lodash';
 import { Task } from './Task';
 import Tasks from '/imports/api/tasks';
 import { TaskForm } from './TaskForm';
@@ -15,9 +16,15 @@ const toggleChecked = ({ _id, isChecked }) => {
 const deleteTask = ({ _id }) => Tasks.remove(_id);
 
 const App = () => {
+  const filter = {};
+
   const [hideCompleted, setHideCompleted] = useState(false);
 
-  const tasks = useTracker(() => Tasks.find({}, { sort: { createdAt: -1 } }).fetch());
+  if (hideCompleted) {
+    _.set(filter, 'checked', false);
+  }
+
+  const tasks = useTracker(() => Tasks.find(filter, { sort: { createdAt: -1 } }).fetch());
 
   return (
     <div className="simple-todos-react">
