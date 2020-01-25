@@ -23,6 +23,18 @@ const App = () => {
     <div className="simple-todos-react">
       <h1>Welcome to Meteor!</h1>
 
+      <div className="filters">
+        <label>
+          <input
+              type="checkbox"
+              readOnly
+              checked={ Boolean(hideCompleted) }
+              onClick={() => setHideCompleted(!hideCompleted)}
+          />
+          Hide Completed
+        </label>
+      </div>
+
       <ul className="tasks">
         { tasks.map(task => <Task
           key={ task._id }
