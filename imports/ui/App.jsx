@@ -31,7 +31,7 @@ export const App = () => {
 
   return (
     <div className="simple-todos-react">
-      <h1>Welcome to Meteor!</h1>
+      <h1>Todo List ({ incompleteTasksCount })</h1>
 
       <div className="filters">
         <label>
