@@ -24,7 +24,10 @@ const App = () => {
     _.set(filter, 'checked', false);
   }
 
-  const tasks = useTracker(() => Tasks.find(filter, { sort: { createdAt: -1 } }).fetch());
+  const { tasks, incompleteTasksCount } = useTracker(() => ({
+    tasks: Tasks.find(filter, { sort: { createdAt: -1 } }).fetch(),
+    incompleteTasksCount: Tasks.find({ checked: { $ne: true }}).count()
+  }));
 
   return (
     <div className="simple-todos-react">
