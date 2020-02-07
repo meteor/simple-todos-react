@@ -47,3 +47,26 @@ body {
 .simple-todos-react .task-form input {
   flex-grow: 1;
 }
+
+.simple-todos-react .login-form {
+  margin-top: 2rem;
+}
+
+.simple-todos-react .login-form label,
+.simple-todos-react .login-form input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.simple-todos-react .login-form label {
+  margin-bottom: .4rem;
+}
+
+.simple-todos-react .login-form input {
+  margin-bottom: .8rem;
+}
+
+.simple-todos-react .login-form button[type=submit] {
+  float: right;
+}
