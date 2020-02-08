@@ -21,11 +21,15 @@ export const App = () => {
     _.set(filter, 'checked', false);
   }
 
-  const { tasks, incompleteTasksCount, user } = useTracker(() => ({
-    tasks: Tasks.find(filter, { sort: { createdAt: -1 } }).fetch(),
-    incompleteTasksCount: Tasks.find({ checked: { $ne: true }}).count(),
-    user: Meteor.user(),
-  }));
+  const { tasks, incompleteTasksCount, user } = useTracker(() => {
+    Meteor.subscribe('tasks');
+
+    return ({
+      tasks: Tasks.find(filter, {sort: {createdAt: -1}}).fetch(),
+      incompleteTasksCount: Tasks.find({checked: {$ne: true}}).count(),
+      user: Meteor.user(),
+    });
+  });
 
   if (!user) {
     return (
