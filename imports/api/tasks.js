@@ -42,6 +42,21 @@ Meteor.methods({
         isChecked
       }
     });
+  },
+
+  'tasks.setPrivate'(taskId, isPrivate) {
+    check(taskId, String);
+    check(isPrivate, Boolean);
+
+    if (!this.userId) {
+      throw new Meteor.Error('Not authorized.');
+    }
+
+    Tasks.update(taskId, {
+      $set: {
+        isPrivate
+      }
+    })
   }
 });
 
