@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import Tasks from '/imports/api/tasks';
+import { Tasks } from '/imports/api/tasks';
 
 Meteor.startup(() => {
   if (!Accounts.findUserByUsername('meteorite')) {
