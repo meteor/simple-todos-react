@@ -3,6 +3,7 @@ import classnames from 'classnames';
 
 export const Task = ({ task, onCheckboxClick, onDeleteClick, onTogglePrivateClick }) => {
   const classes = classnames('task', {
+    'private': Boolean(task.isPrivate),
     'checked': Boolean(task.isChecked)
   });
 
