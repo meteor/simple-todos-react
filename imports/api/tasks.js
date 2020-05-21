@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
-import { check } from 'meteor/check';
+import { check, Match } from 'meteor/check';
 
 export const Tasks = new Mongo.Collection('tasks');
 
@@ -34,7 +34,7 @@ Meteor.methods({
     });
   },
   'tasks.remove'(taskId) {
-    check(taskId, String);
+    check(taskId, Match.OneOf(String, Mongo.ObjectID));
 
     const task = Tasks.findOne(taskId);
     if (task.private && task.owner !== this.userId) {
@@ -45,7 +45,7 @@ Meteor.methods({
     Tasks.remove(taskId);
   },
   'tasks.setChecked'(taskId, setChecked) {
-    check(taskId, String);
+    check(taskId, Match.OneOf(String, Mongo.ObjectID));
     check(setChecked, Boolean);
 
     const task = Tasks.findOne(taskId);
@@ -57,7 +57,7 @@ Meteor.methods({
     Tasks.update(taskId, { $set: { checked: setChecked } });
   },
   'tasks.setPrivate'(taskId, setToPrivate) {
-    check(taskId, String);
+    check(taskId, Match.OneOf(String, Mongo.ObjectID));
     check(setToPrivate, Boolean);
 
     const task = Tasks.findOne(taskId);
