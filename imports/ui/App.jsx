@@ -2,19 +2,15 @@ import React, { useState } from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
 import _ from 'lodash';
 import { Task } from './Task';
-import Tasks from '/imports/api/tasks';
+import { Tasks } from '/imports/api/tasks';
 import { TaskForm } from './TaskForm';
 import { LoginForm } from './LoginForm';
 
 const toggleChecked = ({ _id, isChecked }) => {
-  Tasks.update(_id, {
-    $set: {
-      isChecked: !isChecked
-    }
-  })
+  Meteor.call('tasks.setChecked', _id, !isChecked);
 };
 
-const deleteTask = ({ _id }) => Tasks.remove(_id);
+const deleteTask = ({ _id }) => Meteor.call('tasks.remove', _id);
 
 export const App = () => {
   const filter = {};
@@ -64,7 +60,7 @@ export const App = () => {
         />) }
       </ul>
 
-      <TaskForm user={user}/>
+      <TaskForm />
     </div>
   );
 };
