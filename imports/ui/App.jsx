@@ -10,6 +10,10 @@ const toggleChecked = ({ _id, isChecked }) => {
   Meteor.call('tasks.setChecked', _id, !isChecked);
 };
 
+const togglePrivate = ({ _id, isPrivate }) => {
+  Meteor.call('tasks.setPrivate', _id, !isPrivate);
+};
+
 const deleteTask = ({ _id }) => Meteor.call('tasks.remove', _id);
 
 export const App = () => {
@@ -61,6 +65,7 @@ export const App = () => {
           task={ task }
           onCheckboxClick={toggleChecked}
           onDeleteClick={deleteTask}
+          onTogglePrivateClick={togglePrivate}
         />) }
       </ul>
 
