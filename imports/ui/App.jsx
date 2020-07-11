@@ -22,7 +22,7 @@ export const App = () => {
   const [hideCompleted, setHideCompleted] = useState(false);
 
   if (hideCompleted) {
-    _.set(filter, 'checked', false);
+    _.set(filter, 'isChecked', false);
   }
 
   const { tasks, incompleteTasksCount, user } = useTracker(() => {
@@ -30,7 +30,7 @@ export const App = () => {
 
     return ({
       tasks: Tasks.find(filter, {sort: {createdAt: -1}}).fetch(),
-      incompleteTasksCount: Tasks.find({checked: {$ne: true}}).count(),
+      incompleteTasksCount: Tasks.find({isChecked: {$ne: true}}).count(),
       user: Meteor.user(),
     });
   });
