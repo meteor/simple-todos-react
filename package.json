@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.6.0",
-    "bcrypt": "^3.0.8",
+    "bcrypt": "^5.0.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
     "meteor-node-stubs": "^1.0.0",
