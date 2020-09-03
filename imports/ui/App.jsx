@@ -69,7 +69,7 @@ export const App = () => {
         />) }
       </ul>
 
-      <TaskForm />
+      <TaskForm user={user} />
     </div>
   );
 };
